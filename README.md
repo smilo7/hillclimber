@@ -9,13 +9,14 @@ Example solution:
 
 ### Current features
 
-- finds optimal solution ot item packing problem sometimes.
+- Finds optimal solution for item packing problem, sometimes.
 
-### Not so featury
+### Not-so-featurey
 
 - Gets stuck in local maxima quite a lot.
 
 ### Todo
+
 - Add parameter to change mutation rate
 - Experiment with different fitness functions
 
