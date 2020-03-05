@@ -66,15 +66,20 @@ class Hillclimber:
     def mutate(self):
         #make a copy of the current phenotype
         copy = np.copy(self.phenotype)
-        r = random.randint(0,9)
-        if copy[r] == 1:
-            copy[r] = 0
-        else:
-            copy[r] = 1
+        #mutation_rate = 0.7
+        num = random.randint(1,4) # number of genes to flip
+        for _ in range(0, num):
+            r = random.randint(0,9) #choose a random gene to flip each time
+            copy[r] = int(not copy[r])
+            #if copy[r] == 1:
+            #    copy[r] = 0
+            #else:
+            #    copy[r] = 1
+
         return copy
 
     def evolve(self):
-        for _ in range (0,100):
+        for _ in range (0,300):
             new_mutation = self.mutate()
             #print(new_mutation)
             if (self.fitness(new_mutation) > self.fitness(self.phenotype)):
@@ -87,14 +92,35 @@ class Hillclimber:
         return self.phenotype, self.get_volume(self.phenotype)
     
 
-climber = Hillclimber(items)
-climber.evolve()
 
+def make_population_of_climbers(number):
+    climbers = []
+    for each in range(0, number):
+        climbers.append(Hillclimber(items))
+    for each in climbers:
+        each.evolve()
+    return climbers
+
+
+#climber = Hillclimber(items)
+#climber.evolve()
+#print(climber.fitness_log[99:])
+
+population = make_population_of_climbers(20)
 
 #plot graph of fitness over generations
-print(climber.fitness_log)
-plt.plot(climber.fitness_log, label="fitness")
-plt.plot(climber.volume_log, label="volume")
-plt.legend()
-plt.xlabel("generations")
-plt.ylabel("fitness and volume")
+
+
+plt.style.use('seaborn')
+#plt.plot(climber.fitness_log, label="fitness")
+#plt.plot(climber.volume_log, label="volume")
+#plt.legend()
+for each in population:
+    plt.plot(each.fitness_log)
+    print(each.fitness_log[299:])
+
+
+plt.xlabel("Generations")
+plt.ylabel("Fitness")
+
+#print("fitness at end:", climber.current_fitness)
