@@ -4,19 +4,21 @@
 
 Example solution:
 
-![solution](images/example_solution.png)
+![solution](images/example_solution2.png)
+
+
+![population](images/population_example.png)
 
 
 ### Current features
 
-- Finds optimal solution for item packing problem, sometimes.
+- Finds optimal solution for item packing problem, all the time with multiple hillclimbers.
 
 ### Not-so-featurey
 
-- Gets stuck in local maxima quite a lot.
+- Gets stuck in local maxima sometimes.
 
 ### Todo
 
-- Add parameter to change mutation rate
 - Experiment with different fitness functions
 
